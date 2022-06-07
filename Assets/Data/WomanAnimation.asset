@@ -30,3 +30,12 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 3da936c9885934ffb808a9f5e4b05d5e, type: 3}
     - {fileID: 21300000, guid: 101eeb5d0bcf44dd58deba55044073fb, type: 3}
     - {fileID: 21300000, guid: 19c21e75775b54859a836682f7043799, type: 3}
+  - AnimationTrack: 2
+    Sprites:
+    - {fileID: 21300000, guid: 9028111435c6746acb60089b99efcf8f, type: 3}
+    - {fileID: 21300000, guid: b8cf87ad419e444109e876f5bd7664fc, type: 3}
+    - {fileID: 21300000, guid: b0d7d17d79d384a8580f6236d8fd8006, type: 3}
+    - {fileID: 21300000, guid: a02d410614ef1458096ef6e6077bb9b4, type: 3}
+    - {fileID: 21300000, guid: e1eceae9a396141fdabdbc6e2b3e9ba8, type: 3}
+    - {fileID: 21300000, guid: 757d77b4d88fb48ec99de71842408bb9, type: 3}
+    - {fileID: 21300000, guid: d113d7c0b82df49eaa0bca078e4e9a79, type: 3}

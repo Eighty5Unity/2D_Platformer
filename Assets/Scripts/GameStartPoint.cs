@@ -10,6 +10,7 @@ public class GameStartPoint : MonoBehaviour
 
     private ParalaxManager _paralaxManager;
     private List<SpriteAnimation> _spriteAnimations = new List<SpriteAnimation>();
+    private PlayerController _playerController;
 
     private void Awake()
     {
@@ -26,6 +27,8 @@ public class GameStartPoint : MonoBehaviour
             currentPerson.StartAnimation(_characterView[i].SpriteRenderer, CharacterAnimationTracks.idle, true, 8); // change to different characters
             _spriteAnimations.Add(currentPerson);
         }
+
+        _playerController = new PlayerController(_characterView[0], _spriteAnimations[0]);
     }
 
     private void Update()
@@ -36,6 +39,8 @@ public class GameStartPoint : MonoBehaviour
         {
             spriteAnimation.Update();
         }
+
+        _playerController.Update();
     }
 
     private void FixedUpdate()

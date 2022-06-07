@@ -27,3 +27,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: f44b19ddd98454d4b9dfcfa5db94d9b4, type: 3}
     - {fileID: 21300000, guid: 78be1d6bc5e4b405f97d09ff5db0addd, type: 3}
     - {fileID: 21300000, guid: 1df3bc45aab8c47cfb1bf1567210f563, type: 3}
+  - AnimationTrack: 2
+    Sprites:
+    - {fileID: 21300000, guid: a6adcfb84d9054ac486ef7a10722243d, type: 3}
+    - {fileID: 21300000, guid: d7886951770614509b79fc9c1bdb69b1, type: 3}
+    - {fileID: 21300000, guid: 39138034d63f44666a7ea1bf273eda08, type: 3}
+    - {fileID: 21300000, guid: 417f4d0e791d3450d9f1009ce4274222, type: 3}
