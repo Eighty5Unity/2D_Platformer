@@ -137,3 +137,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 4695888672289667222}
+  _spriteAnimationConfig: {fileID: 11400000, guid: 366c4ebc352014661892c50d27b7783b, type: 2}
+  _walkSpeed: 1
+  _jumpStartSpeed: 2
+  _movingThresh: 0.1
+  _flyThresh: 0.4
+  _groundLevel: 0.2
+  _acceleration: -9.8
+  _animationSpeed: 4
+  _loop: 1
