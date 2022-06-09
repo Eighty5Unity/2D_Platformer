@@ -4,6 +4,8 @@ public class CharacterView : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private SpriteAnimationConfig _spriteAnimationConfig;
+    [SerializeField] private Collider2D _collider;
+    [SerializeField] private Rigidbody2D _rigidbody;
 
     [Header("Settings")]
     [SerializeField] private float _walkSpeed = 1f;
@@ -20,6 +22,8 @@ public class CharacterView : MonoBehaviour
 
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
     public SpriteAnimationConfig SpriteAnimationConfig => _spriteAnimationConfig;
+    public Collider2D Collider => _collider;
+    public Rigidbody2D Rigidbody => _rigidbody;
     public float WalkSpeed => _walkSpeed;
     public float AnimationSpeed => _animationSpeed;
     public float JumpStartSpeed => _jumpStartSpeed;

@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class BarrelEmitter
 {
-    private const float DELAY = 1f;
-    private const float STARTSPEED = 1f;
+    private const float DELAY = 3f;
+    private const float STARTSPEED = 3f;
 
-    private List<Barrel> _barrels = new List<Barrel>();
+    private List<PhysicsBarrel> _barrels = new List<PhysicsBarrel>();
     private Transform _transform;
     private int _currentIndex;
     private float _timeTillNextBullet;
@@ -16,7 +16,7 @@ public class BarrelEmitter
         _transform = transform;
         foreach(var barrelView in barrelViews)
         {
-            _barrels.Add(new Barrel(barrelView));
+            _barrels.Add(new PhysicsBarrel(barrelView));
         }
     }
 
@@ -37,6 +37,5 @@ public class BarrelEmitter
                 _currentIndex = 0;
             }
         }
-        _barrels.ForEach(b => b.Update());
     }
 }

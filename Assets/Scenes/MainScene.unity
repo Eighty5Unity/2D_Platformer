@@ -275,7 +275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4834754036810290976, guid: d844411428f05445ca388b26db57b22c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.092
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4834754036810290976, guid: d844411428f05445ca388b26db57b22c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1117,10 +1117,6 @@ MonoBehaviour:
   - {fileID: 1908738245}
   _wellView: {fileID: 2048139827}
   _barrelViews:
-  - {fileID: 497169770}
-  - {fileID: 497169770}
-  - {fileID: 497169770}
-  - {fileID: 497169770}
   - {fileID: 497169770}
   _muzzleTransform: {fileID: 2048139826}
 --- !u!4 &630438201
@@ -2187,7 +2183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8230162221157975558, guid: c262412d747464a0593a3e7d402bdc64, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.345
+      value: -0.83
       objectReference: {fileID: 0}
     - target: {fileID: 8230162221157975558, guid: c262412d747464a0593a3e7d402bdc64, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2858,7 +2854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1373971356538234952, guid: f3f11446ede464508be5a759e29c89ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.851
+      value: 4.79
       objectReference: {fileID: 0}
     - target: {fileID: 1373971356538234952, guid: f3f11446ede464508be5a759e29c89ac, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2915,7 +2911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6079463952768272080, guid: 761047c75604849e6b27e6085818aca8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.879
+      value: 4.818
       objectReference: {fileID: 0}
     - target: {fileID: 6079463952768272080, guid: 761047c75604849e6b27e6085818aca8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2968,7 +2964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1308059858411970830, guid: adb71536239084a2e9343a29c2a7a97f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 1308059858411970830, guid: adb71536239084a2e9343a29c2a7a97f, type: 3}
       propertyPath: m_LocalPosition.y

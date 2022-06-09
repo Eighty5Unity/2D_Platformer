@@ -6,6 +6,7 @@ public class PlayerController
     private const string Vertical = nameof(Vertical);
 
     private CharacterView _characterView;
+    public CharacterView CharacterView { get => _characterView; set => _characterView = value; }
     private SpriteAnimation _spriteAnimation;
     private float _yVelocity;
 
