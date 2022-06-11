@@ -317,6 +317,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bearded
       objectReference: {fileID: 0}
+    - target: {fileID: 7839697793002075281, guid: d844411428f05445ca388b26db57b22c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d844411428f05445ca388b26db57b22c, type: 3}
 --- !u!1001 &158701917
@@ -1162,7 +1166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -0.47, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1196,7 +1200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &630438200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1209,8 +1213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488bb271de416446fab3e3c0bc115333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 519420031}
-  _background: {fileID: 1461332821}
+  _background: {fileID: 0}
   _characterView:
   - {fileID: 595946430}
   - {fileID: 800596796}
@@ -2278,6 +2281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Oldman
       objectReference: {fileID: 0}
+    - target: {fileID: 4490080173370347129, guid: c262412d747464a0593a3e7d402bdc64, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8230162221157975558, guid: c262412d747464a0593a3e7d402bdc64, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3106,6 +3113,10 @@ PrefabInstance:
     - target: {fileID: 8475951839052509436, guid: adb71536239084a2e9343a29c2a7a97f, type: 3}
       propertyPath: m_Name
       value: Hatman
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475951839052509436, guid: adb71536239084a2e9343a29c2a7a97f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adb71536239084a2e9343a29c2a7a97f, type: 3}

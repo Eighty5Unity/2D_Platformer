@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class PlayerController : IUpdate, IOnDestroy
 {
-    //private const string Horizontal = nameof(Horizontal);
-    //private const string Vertical = nameof(Vertical);
-
     private CharacterView _characterView;
     public CharacterView CharacterView { get => _characterView; set => _characterView = value; }
     private SpriteAnimation _spriteAnimation;
