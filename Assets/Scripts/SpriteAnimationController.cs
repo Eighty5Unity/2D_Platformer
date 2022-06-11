@@ -12,7 +12,7 @@ public class SpriteAnimationController : IUpdate
     {
         foreach(var characterView in characterViews)
         {
-            var characterSpriteAnimation = new SpriteAnimation(characterView.SpriteAnimationConfig);
+            var characterSpriteAnimation = characterView.SpriteAnimation;
             characterSpriteAnimation.StartAnimation(characterView.SpriteRenderer, CharacterAnimationTracks.idle, characterView.AnimationLoop, characterView.AnimationSpeed);
             _spriteAnimations.Add(characterSpriteAnimation);
         }

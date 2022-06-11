@@ -1,30 +1,47 @@
 using UnityEngine;
 
-public class PlayerController : IUpdate
+public class PlayerController : IUpdate, IOnDestroy
 {
-    private const string Horizontal = nameof(Horizontal);
-    private const string Vertical = nameof(Vertical);
+    //private const string Horizontal = nameof(Horizontal);
+    //private const string Vertical = nameof(Vertical);
 
     private CharacterView _characterView;
     public CharacterView CharacterView { get => _characterView; set => _characterView = value; }
     private SpriteAnimation _spriteAnimation;
+    private float _horizontal;
+    private float _vertical;
+    private IUserInput _horizontalInput;
+    private IUserInput _verticalInput;
     private float _yVelocity;
 
-    public PlayerController(CharacterView characterView, SpriteAnimation spriteAnimation)
+    public PlayerController(CharacterView characterView, (IUserInput horizontal, IUserInput vertical) input)
     {
         _characterView = characterView;
-        _spriteAnimation = spriteAnimation;
+        _spriteAnimation = characterView.SpriteAnimation;
+        _horizontalInput = input.horizontal;
+        _verticalInput = input.vertical;
+        _horizontalInput.AxisOnChange += HorizontalAxisOnChange;
+        _verticalInput.AxisOnChange += VerticalAxisOnChange;
+    }
+
+    private void HorizontalAxisOnChange(float value)
+    {
+        _horizontal = value;
+    }
+
+    private void VerticalAxisOnChange(float value)
+    {
+        _vertical = value;
     }
 
     public void Update(float deltaTime)
     {
-        var doJump = Input.GetAxis(Vertical) > 0; //
-        var xAxisInput = Input.GetAxis(Horizontal); // make in InputSystem
+        var doJump = _vertical > 0;
 
-        var isGoSideWay = Mathf.Abs(xAxisInput) > _characterView.MovingThresh;
+        var isGoSideWay = Mathf.Abs(_horizontal) > _characterView.MovingThresh;
         if (isGoSideWay)
         {
-            GoSideWay(xAxisInput, deltaTime);
+            GoSideWay(_horizontal, deltaTime);
         }
 
         if (IsGrounded())
@@ -72,5 +89,11 @@ public class PlayerController : IUpdate
         }
 
         _characterView.transform.position += Vector3.up * deltaTime * _yVelocity;
+    }
+
+    public void OnDestroy()
+    {
+        _horizontalInput.AxisOnChange -= HorizontalAxisOnChange;
+        _verticalInput.AxisOnChange -= VerticalAxisOnChange;
     }
 }

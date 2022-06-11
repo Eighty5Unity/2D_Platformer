@@ -33,4 +33,11 @@ public class CharacterView : MonoBehaviour
     public float Acceleration => _acceleration;
     public bool AnimationLoop => _loop;
 
+    private SpriteAnimation _spriteAnimation;
+    public SpriteAnimation SpriteAnimation => _spriteAnimation;
+
+    private void Awake()
+    {
+        _spriteAnimation = new SpriteAnimation(_spriteAnimationConfig);
+    }
 }
