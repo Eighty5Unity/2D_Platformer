@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public class ChangePlayerController
+public class ChangePlayerController : IUpdate
 {
     private CharacterView[] _characterViews;
     private int _currentControllerNumber = 0;
-    private PlayerPhysicsController _player;
+    private PlayerController _player;
     private CharacterView _currentCharacter;
 
     public CharacterView CurrentCharacter => _currentCharacter;
 
-    public ChangePlayerController(CharacterView[] characterViews, PlayerPhysicsController player)
+    public ChangePlayerController(CharacterView[] characterViews, PlayerController player)
     {
         _characterViews = characterViews;
         _currentCharacter = characterViews[_currentControllerNumber];
         _player = player;
     }
 
-    public void Update()
+    public void Update(float deltaTime)
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController
+public class PlayerController : IUpdate
 {
     private const string Horizontal = nameof(Horizontal);
     private const string Vertical = nameof(Vertical);
@@ -16,7 +16,7 @@ public class PlayerController
         _spriteAnimation = spriteAnimation;
     }
 
-    public void Update()
+    public void Update(float deltaTime)
     {
         var doJump = Input.GetAxis(Vertical) > 0; //
         var xAxisInput = Input.GetAxis(Horizontal); // make in InputSystem
@@ -24,7 +24,7 @@ public class PlayerController
         var isGoSideWay = Mathf.Abs(xAxisInput) > _characterView.MovingThresh;
         if (isGoSideWay)
         {
-            GoSideWay(xAxisInput);
+            GoSideWay(xAxisInput, deltaTime);
         }
 
         if (IsGrounded())
@@ -43,13 +43,13 @@ public class PlayerController
         }
         else
         {
-            LandingCharacter();
+            LandingCharacter(deltaTime);
         }
     }
 
-    private void GoSideWay(float xAxisInput)
+    private void GoSideWay(float xAxisInput, float deltaTime)
     {
-        _characterView.transform.position += Vector3.right * Time.deltaTime * _characterView.WalkSpeed * ((xAxisInput < 0) ? -1 : 1);
+        _characterView.transform.position += Vector3.right * deltaTime * _characterView.WalkSpeed * ((xAxisInput < 0) ? -1 : 1);
         _characterView.SpriteRenderer.flipX = xAxisInput < 0;
     }
 
@@ -63,14 +63,14 @@ public class PlayerController
         _characterView.transform.position.Change(y: _characterView.GroundLevel);
     }
 
-    private void LandingCharacter()
+    private void LandingCharacter(float deltaTime)
     {
-        _yVelocity += _characterView.Acceleration * Time.deltaTime;
+        _yVelocity += _characterView.Acceleration * deltaTime;
         if(Mathf.Abs(_yVelocity) > _characterView.FlyThresh)
         {
             _spriteAnimation.StartAnimation(_characterView.SpriteRenderer, CharacterAnimationTracks.jump, true, _characterView.AnimationSpeed);
         }
 
-        _characterView.transform.position += Vector3.up * Time.deltaTime * _yVelocity;
+        _characterView.transform.position += Vector3.up * deltaTime * _yVelocity;
     }
 }

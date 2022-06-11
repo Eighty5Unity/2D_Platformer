@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ParalaxManager
+public class ParalaxManager : ILateUpdate
 {
     private Vector3 _backStartPosition;
     private Vector3 _cameraStartPosition;
@@ -16,7 +16,7 @@ public class ParalaxManager
         _backgroundTransform = backgroundTransform;
     }
 
-    public void Update()
+    public void LateUpdate(float deltaTime)
     {
         _backgroundTransform.position = _backStartPosition + (_camera.transform.position - _cameraStartPosition) * COEF;
     }
