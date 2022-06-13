@@ -317,10 +317,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bearded
       objectReference: {fileID: 0}
-    - target: {fileID: 7839697793002075281, guid: d844411428f05445ca388b26db57b22c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d844411428f05445ca388b26db57b22c, type: 3}
 --- !u!1001 &158701917
@@ -2281,10 +2277,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Oldman
       objectReference: {fileID: 0}
-    - target: {fileID: 4490080173370347129, guid: c262412d747464a0593a3e7d402bdc64, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8230162221157975558, guid: c262412d747464a0593a3e7d402bdc64, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3113,10 +3105,6 @@ PrefabInstance:
     - target: {fileID: 8475951839052509436, guid: adb71536239084a2e9343a29c2a7a97f, type: 3}
       propertyPath: m_Name
       value: Hatman
-      objectReference: {fileID: 0}
-    - target: {fileID: 8475951839052509436, guid: adb71536239084a2e9343a29c2a7a97f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adb71536239084a2e9343a29c2a7a97f, type: 3}

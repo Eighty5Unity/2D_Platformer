@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerController : IUpdate, IOnDestroy
 {
-    private CharacterView _characterView;
-    public CharacterView CharacterView { get => _characterView; set => _characterView = value; }
+    private ChangePlayerController _playerController;
+    public CharacterView CharacterView => _playerController.CurrentCharacter;
     private SpriteAnimation _spriteAnimation;
     private float _horizontal;
     private float _vertical;
@@ -11,10 +11,10 @@ public class PlayerController : IUpdate, IOnDestroy
     private IUserInput _verticalInput;
     private float _yVelocity;
 
-    public PlayerController(CharacterView characterView, (IUserInput horizontal, IUserInput vertical) input)
+    public PlayerController(ChangePlayerController playerController, (IUserInput horizontal, IUserInput vertical) input)
     {
-        _characterView = characterView;
-        _spriteAnimation = characterView.SpriteAnimation;
+        _playerController = playerController;
+        _spriteAnimation = playerController.CurrentCharacter.SpriteAnimation;
         _horizontalInput = input.horizontal;
         _verticalInput = input.vertical;
         _horizontalInput.AxisOnChange += HorizontalAxisOnChange;
@@ -35,7 +35,7 @@ public class PlayerController : IUpdate, IOnDestroy
     {
         var doJump = _vertical > 0;
 
-        var isGoSideWay = Mathf.Abs(_horizontal) > _characterView.MovingThresh;
+        var isGoSideWay = Mathf.Abs(_horizontal) > _playerController.CurrentCharacter.MovingThresh;
         if (isGoSideWay)
         {
             GoSideWay(_horizontal, deltaTime);
@@ -43,11 +43,11 @@ public class PlayerController : IUpdate, IOnDestroy
 
         if (IsGrounded())
         {
-            _spriteAnimation.StartAnimation(_characterView.SpriteRenderer, isGoSideWay ? CharacterAnimationTracks.walk : CharacterAnimationTracks.idle, true, _characterView.AnimationSpeed);
+            _playerController.CurrentCharacter.SpriteAnimation.StartAnimation(_playerController.CurrentCharacter.SpriteRenderer, isGoSideWay ? CharacterAnimationTracks.walk : CharacterAnimationTracks.idle, true, _playerController.CurrentCharacter.AnimationSpeed);
 
             if (doJump && Mathf.Approximately(_yVelocity, 0))
             {
-                _yVelocity = _characterView.JumpStartSpeed;
+                _yVelocity = _playerController.CurrentCharacter.JumpStartSpeed;
             }
             else if(_yVelocity < 0)
             {
@@ -63,29 +63,29 @@ public class PlayerController : IUpdate, IOnDestroy
 
     private void GoSideWay(float xAxisInput, float deltaTime)
     {
-        _characterView.transform.position += Vector3.right * deltaTime * _characterView.WalkSpeed * ((xAxisInput < 0) ? -1 : 1);
-        _characterView.SpriteRenderer.flipX = xAxisInput < 0;
+        _playerController.CurrentCharacter.transform.position += Vector3.right * deltaTime * _playerController.CurrentCharacter.WalkSpeed * ((xAxisInput < 0) ? -1 : 1);
+        _playerController.CurrentCharacter.SpriteRenderer.flipX = xAxisInput < 0;
     }
 
     private bool IsGrounded()
     {
-        return _characterView.transform.position.y <= _characterView.GroundLevel && _yVelocity <= 0;
+        return _playerController.CurrentCharacter.transform.position.y <= _playerController.CurrentCharacter.GroundLevel && _yVelocity <= 0;
     }
 
     private void MovementCharacter()
     {
-        _characterView.transform.position.Change(y: _characterView.GroundLevel);
+        _playerController.CurrentCharacter.transform.position.Change(y: _playerController.CurrentCharacter.GroundLevel);
     }
 
     private void LandingCharacter(float deltaTime)
     {
-        _yVelocity += _characterView.Acceleration * deltaTime;
-        if(Mathf.Abs(_yVelocity) > _characterView.FlyThresh)
+        _yVelocity += _playerController.CurrentCharacter.Acceleration * deltaTime;
+        if(Mathf.Abs(_yVelocity) > _playerController.CurrentCharacter.FlyThresh)
         {
-            _spriteAnimation.StartAnimation(_characterView.SpriteRenderer, CharacterAnimationTracks.jump, true, _characterView.AnimationSpeed);
+            _spriteAnimation.StartAnimation(_playerController.CurrentCharacter.SpriteRenderer, CharacterAnimationTracks.jump, true, _playerController.CurrentCharacter.AnimationSpeed);
         }
 
-        _characterView.transform.position += Vector3.up * deltaTime * _yVelocity;
+        _playerController.CurrentCharacter.transform.position += Vector3.up * deltaTime * _yVelocity;
     }
 
     public void OnDestroy()

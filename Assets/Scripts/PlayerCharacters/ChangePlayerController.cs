@@ -2,17 +2,15 @@ public class ChangePlayerController : IUpdate, IOnDestroy
 {
     private CharacterView[] _characterViews;
     private int _currentControllerNumber = 0;
-    private PlayerController _player;
     private CharacterView _currentCharacter;
     public CharacterView CurrentCharacter => _currentCharacter;
     private bool _isSpaceKeyPress;
     private IUserInputKey _spaceKey;
 
-    public ChangePlayerController(CharacterView[] characterViews, PlayerController player, IUserInputKey spaceKey)
+    public ChangePlayerController(CharacterView[] characterViews, IUserInputKey spaceKey)
     {
         _characterViews = characterViews;
         _currentCharacter = characterViews[_currentControllerNumber];
-        _player = player;
         _spaceKey = spaceKey;
         _spaceKey.PressKey += PressSpaceKey;
     }
@@ -32,7 +30,6 @@ public class ChangePlayerController : IUpdate, IOnDestroy
                 _currentControllerNumber = 0;
             }
             _currentCharacter = _characterViews[_currentControllerNumber];
-            _player.CharacterView = _currentCharacter;
         }
     }
 
