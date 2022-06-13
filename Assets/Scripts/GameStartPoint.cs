@@ -14,8 +14,7 @@ public class GameStartPoint : MonoBehaviour
     private PlayerPhysicsController _playerController;
     private BarrelEmitter _barrelEmitter;
     private AimingMuzzle _aimingMuzzle;
-    private ChangePlayerController _changePlayerController;
-    //CoinsManager
+     //CoinsManager
 
     private void Start()
     {
@@ -27,7 +26,7 @@ public class GameStartPoint : MonoBehaviour
         //}
         //_playerController = new PlayerPhysicsController(_characterView[0], _spriteAnimations[0]);
         //_changePlayerController = new ChangePlayerController(_characterView, _playerController);
-        _aimingMuzzle = new AimingMuzzle(_wellView.transform, _changePlayerController.CurrentCharacter.transform);
+        //_aimingMuzzle = new AimingMuzzle(_wellView.transform, _changePlayerController.CurrentCharacter.transform);
         _barrelEmitter = new BarrelEmitter(_barrelViews, _muzzleTransform.transform);
     }
 

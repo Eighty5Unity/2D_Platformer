@@ -10,11 +10,11 @@ internal sealed class GameInitialize
         var paralaxManager = new ParalaxManager(camera, gameObjects.Background.transform);
 
         var inputInitialize = new InputInitialize();
-        var inputController = new InputController(inputInitialize.GetInputAxis(), inputInitialize.GetInputSpaceKey());
+        var inputController = new InputController(inputInitialize.GetInputAxis(), inputInitialize.GetInputSpaceKey(), inputInitialize.GetInputUpKey());
         var changePlayerController = new ChangePlayerController(gameObjects.CharacterViews, inputInitialize.GetInputSpaceKey());// not work!
 
         var spriteAnimationController = new SpriteAnimationController(gameObjects.CharacterViews);
-        var playerController = new PlayerController(changePlayerController, inputInitialize.GetInputAxis());
+        var playerController = new PlayerController(changePlayerController, inputInitialize.GetInputAxis(), inputInitialize.GetInputUpKey());
         
         
        

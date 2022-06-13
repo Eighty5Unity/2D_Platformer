@@ -25,7 +25,7 @@ public class PlayerPhysicsController
 
         _contactsPoller.Update();
 
-        var isGoSideWay = Mathf.Abs(xAxisInput) > _characterView.MovingThresh;
+        var isGoSideWay = Mathf.Abs(xAxisInput) > 0;
 
         if (isGoSideWay)
             _characterView.SpriteRenderer.flipX = xAxisInput < 0;

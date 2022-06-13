@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1954594060620815692}
   - component: {fileID: 1996904408924981556}
   - component: {fileID: 7023031287104295891}
-  - component: {fileID: 7469910556131965189}
   - component: {fileID: 4413456008181944896}
+  - component: {fileID: 7469910556131965189}
   m_Layer: 0
   m_Name: Woman
   m_TagString: Untagged
@@ -103,30 +103,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.027984709}
   m_Size: {x: 0.16536176, y: 0.40403056}
   m_Direction: 0
---- !u!114 &7469910556131965189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9095679783371911240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a438dfc15a2744b6bc56223e8ae6e2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 1996904408924981556}
-  _spriteAnimationConfig: {fileID: 11400000, guid: c962a2f7e73854612b134685fc94eaf2, type: 2}
-  _collider: {fileID: 7023031287104295891}
-  _rigidbody: {fileID: 4413456008181944896}
-  _walkSpeed: 1
-  _jumpStartSpeed: 1
-  _movingThresh: 0.1
-  _flyThresh: 0.4
-  _groundLevel: -1.9
-  _acceleration: -9.8
-  _animationSpeed: 3
-  _loop: 1
 --- !u!50 &4413456008181944896
 Rigidbody2D:
   serializedVersion: 4
@@ -148,3 +124,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &7469910556131965189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9095679783371911240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a438dfc15a2744b6bc56223e8ae6e2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 1996904408924981556}
+  _spriteAnimationConfig: {fileID: 11400000, guid: c962a2f7e73854612b134685fc94eaf2, type: 2}
+  _collider: {fileID: 7023031287104295891}
+  _rigidbody: {fileID: 4413456008181944896}
+  _walkSpeed: 50
+  _jumpStartSpeed: 100
+  _flyThresh: 0.4
+  _groundLevel: -1.9
+  _acceleration: -9.8
+  _animationSpeed: 3
+  _loop: 1

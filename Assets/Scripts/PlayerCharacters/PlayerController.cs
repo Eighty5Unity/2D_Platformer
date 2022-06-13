@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public class PlayerController : IUpdate, IOnDestroy
+public class PlayerController : IUpdate, IFixedUpdate, IOnDestroy
 {
     private ChangePlayerController _playerController;
     private CharacterView _currentCharacter;
     private float _horizontal;
-    private float _vertical;
     private IUserInput _horizontalInput;
-    private IUserInput _verticalInput;
-    private float _yVelocity;
+    private bool _pressUpKey;
+    private bool _doJump;
+    private IUserInputKey _upKey;
 
-    public PlayerController(ChangePlayerController playerController, (IUserInput horizontal, IUserInput vertical) input)
+    public PlayerController(ChangePlayerController playerController, (IUserInput horizontal, IUserInput vertical) input, IUserInputKey upKey)
     {
         _playerController = playerController;
         _horizontalInput = input.horizontal;
-        _verticalInput = input.vertical;
+        _upKey = upKey;
         _horizontalInput.AxisOnChange += HorizontalAxisOnChange;
-        _verticalInput.AxisOnChange += VerticalAxisOnChange;
+        _upKey.PressKey += PressUpKey;
     }
 
     private void HorizontalAxisOnChange(float value)
@@ -24,73 +24,54 @@ public class PlayerController : IUpdate, IOnDestroy
         _horizontal = value;
     }
 
-    private void VerticalAxisOnChange(float value)
+    private void PressUpKey(bool value)
     {
-        _vertical = value;
+        _pressUpKey = value;
     }
 
     public void Update(float deltaTime)
     {
+        if (_pressUpKey)
+        {
+            _doJump = true;
+        }
+    }
+
+    public void FixedUpdate(float fixedDeltaTime)
+    {
         _currentCharacter = _playerController.CurrentCharacter;
 
-        var doJump = _vertical > 0;
-
-        var isGoSideWay = Mathf.Abs(_horizontal) > _currentCharacter.MovingThresh;
-        if (isGoSideWay)
+        var newVelocity = 0f;
+        if (_horizontal != 0)
         {
-            GoSideWay(_horizontal, deltaTime);
+            newVelocity = fixedDeltaTime * _currentCharacter.WalkSpeed * (_horizontal < 0 ? -1 : 1);
+            _currentCharacter.SpriteRenderer.flipX = _horizontal < 0;
         }
 
-        if (IsGrounded())
+        _currentCharacter.Rigidbody.velocity = _currentCharacter.Rigidbody.velocity.Change(x: newVelocity);
+
+        if (_currentCharacter.IsGround && _doJump && Mathf.Abs(_currentCharacter.Rigidbody.velocity.y) <= _currentCharacter.FlyThresh)
         {
-            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, isGoSideWay ? CharacterAnimationTracks.walk : CharacterAnimationTracks.idle, true, _currentCharacter.AnimationSpeed);
-
-            if (doJump && Mathf.Approximately(_yVelocity, 0))
-            {
-                _yVelocity = _currentCharacter.JumpStartSpeed;
-            }
-            else if(_yVelocity < 0)
-            {
-                _yVelocity = 0;
-                MovementCharacter();
-            }
-        }
-        else
-        {
-            LandingCharacter(deltaTime);
-        }
-    }
-
-    private void GoSideWay(float xAxisInput, float deltaTime)
-    {
-        _currentCharacter.transform.position += Vector3.right * deltaTime * _currentCharacter.WalkSpeed * ((xAxisInput < 0) ? -1 : 1);
-        _currentCharacter.SpriteRenderer.flipX = xAxisInput < 0;
-    }
-
-    private bool IsGrounded()
-    {
-        return _currentCharacter.transform.position.y <= _currentCharacter.GroundLevel && _yVelocity <= 0;
-    }
-
-    private void MovementCharacter()
-    {
-        _currentCharacter.transform.position.Change(y: _currentCharacter.GroundLevel);
-    }
-
-    private void LandingCharacter(float deltaTime)
-    {
-        _yVelocity += _currentCharacter.Acceleration * deltaTime;
-        if(Mathf.Abs(_yVelocity) > _currentCharacter.FlyThresh)
-        {
-            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.jump, true, _currentCharacter.AnimationSpeed);
+            _doJump = false;
+            _currentCharacter.IsGround = false;
+            _currentCharacter.Rigidbody.AddForce(Vector3.up * _currentCharacter.JumpStartSpeed);
         }
 
-        _currentCharacter.transform.position += Vector3.up * deltaTime * _yVelocity;
+        if (_currentCharacter.IsGround)
+        {
+            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, _horizontal != 0 ? CharacterAnimationTracks.walk : CharacterAnimationTracks.idle, true,
+                _currentCharacter.AnimationSpeed);
+        }
+        else if (Mathf.Abs(_currentCharacter.Rigidbody.velocity.y) > _currentCharacter.FlyThresh)
+        {
+            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.jump, true,
+                _currentCharacter.AnimationSpeed);
+        }
     }
 
     public void OnDestroy()
     {
         _horizontalInput.AxisOnChange -= HorizontalAxisOnChange;
-        _verticalInput.AxisOnChange -= VerticalAxisOnChange;
+        _upKey.PressKey -= PressUpKey;
     }
 }
