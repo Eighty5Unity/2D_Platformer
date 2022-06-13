@@ -11,7 +11,7 @@ internal sealed class GameInitialize
 
         var inputInitialize = new InputInitialize();
         var inputController = new InputController(inputInitialize.GetInputAxis(), inputInitialize.GetInputSpaceKey(), inputInitialize.GetInputUpKey());
-        var changePlayerController = new ChangePlayerController(gameObjects.CharacterViews, inputInitialize.GetInputSpaceKey());// not work!
+        var changePlayerController = new ChangePlayerController(gameObjects.CharacterViews, inputInitialize.GetInputSpaceKey());
 
         var spriteAnimationController = new SpriteAnimationController(gameObjects.CharacterViews);
         var playerController = new PlayerController(changePlayerController, inputInitialize.GetInputAxis(), inputInitialize.GetInputUpKey());

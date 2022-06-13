@@ -41,31 +41,24 @@ public class PlayerController : IUpdate, IFixedUpdate, IOnDestroy
     {
         _currentCharacter = _playerController.CurrentCharacter;
 
-        var newVelocity = 0f;
-        if (_horizontal != 0)
+        if(_horizontal == 0) //Idle
         {
-            newVelocity = fixedDeltaTime * _currentCharacter.WalkSpeed * (_horizontal < 0 ? -1 : 1);
+            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.idle, _currentCharacter.AnimationLoop, _currentCharacter.AnimationSpeed);
+        }
+        else if (_horizontal != 0) //Walk
+        {
+            var newVelocity = fixedDeltaTime * _currentCharacter.WalkSpeed * (_horizontal < 0 ? -1 : 1);
             _currentCharacter.SpriteRenderer.flipX = _horizontal < 0;
+            _currentCharacter.Rigidbody.velocity = _currentCharacter.Rigidbody.velocity.Change(x: newVelocity);
+            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.walk, true, _currentCharacter.AnimationSpeed);
         }
 
-        _currentCharacter.Rigidbody.velocity = _currentCharacter.Rigidbody.velocity.Change(x: newVelocity);
-
-        if (_currentCharacter.IsGround && _doJump && Mathf.Abs(_currentCharacter.Rigidbody.velocity.y) <= _currentCharacter.FlyThresh)
+        if (_currentCharacter.IsGround && _doJump) //Jump
         {
             _doJump = false;
             _currentCharacter.IsGround = false;
             _currentCharacter.Rigidbody.AddForce(Vector3.up * _currentCharacter.JumpStartSpeed);
-        }
-
-        if (_currentCharacter.IsGround)
-        {
-            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, _horizontal != 0 ? CharacterAnimationTracks.walk : CharacterAnimationTracks.idle, true,
-                _currentCharacter.AnimationSpeed);
-        }
-        else if (Mathf.Abs(_currentCharacter.Rigidbody.velocity.y) > _currentCharacter.FlyThresh)
-        {
-            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.jump, true,
-                _currentCharacter.AnimationSpeed);
+            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.jump, true, _currentCharacter.AnimationSpeed);
         }
     }
 

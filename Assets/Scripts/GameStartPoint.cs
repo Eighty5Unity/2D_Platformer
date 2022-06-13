@@ -11,7 +11,7 @@ public class GameStartPoint : MonoBehaviour
     //CoinViewList
 
     
-    private PlayerPhysicsController _playerController;
+    //private PlayerPhysicsController _playerController;
     private BarrelEmitter _barrelEmitter;
     private AimingMuzzle _aimingMuzzle;
      //CoinsManager

@@ -142,8 +142,6 @@ MonoBehaviour:
   _rigidbody: {fileID: 6194974732519424690}
   _walkSpeed: 50
   _jumpStartSpeed: 100
-  _flyThresh: 0.4
-  _groundLevel: 0.2
   _acceleration: -9.8
   _animationSpeed: 4
-  _loop: 1
+  _loop: 0
