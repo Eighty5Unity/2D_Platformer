@@ -24,7 +24,7 @@ public class ChangePlayerController : IUpdate, IOnDestroy
     {
         if (_isSpaceKeyPress)
         {
-            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.idle, _currentCharacter.AnimationLoop, _currentCharacter.AnimationSpeed);
+            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.idle, _currentCharacter.AnimationIdleLoop, _currentCharacter.AnimationIdleSpeed);
             _currentControllerNumber++;
             if(_currentControllerNumber >= _characterViews.Length)
             {

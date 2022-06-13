@@ -11,7 +11,7 @@ public class SpriteAnimationController : IUpdate
         foreach(var characterView in characterViews)
         {
             var characterSpriteAnimation = characterView.SpriteAnimation;
-            characterSpriteAnimation.StartAnimation(characterView.SpriteRenderer, CharacterAnimationTracks.idle, characterView.AnimationLoop, characterView.AnimationSpeed);
+            characterSpriteAnimation.StartAnimation(characterView.SpriteRenderer, CharacterAnimationTracks.idle, characterView.AnimationIdleLoop, characterView.AnimationIdleSpeed);
             _spriteAnimations.Add(characterSpriteAnimation);
         }
     }

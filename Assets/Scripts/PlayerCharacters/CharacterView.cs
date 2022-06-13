@@ -13,8 +13,12 @@ public class CharacterView : MonoBehaviour
     [SerializeField] private float _acceleration = -9.8f;
 
     [Header("AnimationSettings")]
-    [SerializeField] private float _animationSpeed = 3f;
-    [SerializeField] private bool _loop;
+    [SerializeField] private float _animationIdleSpeed = 3f;
+    [SerializeField] private bool _idleLoop;
+    [SerializeField] private float _animationWalkSpeed = 3f;
+    [SerializeField] private bool _walkLoop;
+    [SerializeField] private float _animationJumpSpeed = 3f;
+    [SerializeField] private bool _jumpLoop;
 
 
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
@@ -22,10 +26,14 @@ public class CharacterView : MonoBehaviour
     public Collider2D Collider => _collider;
     public Rigidbody2D Rigidbody => _rigidbody;
     public float WalkSpeed => _walkSpeed;
-    public float AnimationSpeed => _animationSpeed;
     public float JumpStartSpeed => _jumpStartSpeed;
     public float Acceleration => _acceleration;
-    public bool AnimationLoop => _loop;
+    public float AnimationIdleSpeed => _animationIdleSpeed;
+    public bool AnimationIdleLoop => _idleLoop;
+    public float AnimationWalkSpeed => _animationWalkSpeed;
+    public bool AnimationWalkLoop => _walkLoop;
+    public float AnimationJumpSpeed => _animationJumpSpeed;
+    public bool AnimationJumpLoop => _jumpLoop;
 
     private SpriteAnimation _spriteAnimation;
     public SpriteAnimation SpriteAnimation => _spriteAnimation;

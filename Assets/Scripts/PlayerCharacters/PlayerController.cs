@@ -43,14 +43,14 @@ public class PlayerController : IUpdate, IFixedUpdate, IOnDestroy
 
         if(_horizontal == 0) //Idle
         {
-            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.idle, _currentCharacter.AnimationLoop, _currentCharacter.AnimationSpeed);
+            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.idle, _currentCharacter.AnimationIdleLoop, _currentCharacter.AnimationIdleSpeed);
         }
         else if (_horizontal != 0) //Walk
         {
             var newVelocity = fixedDeltaTime * _currentCharacter.WalkSpeed * (_horizontal < 0 ? -1 : 1);
             _currentCharacter.SpriteRenderer.flipX = _horizontal < 0;
             _currentCharacter.Rigidbody.velocity = _currentCharacter.Rigidbody.velocity.Change(x: newVelocity);
-            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.walk, true, _currentCharacter.AnimationSpeed);
+            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.walk, _currentCharacter.AnimationWalkLoop, _currentCharacter.AnimationWalkSpeed);
         }
 
         if (_currentCharacter.IsGround && _doJump) //Jump
@@ -58,7 +58,7 @@ public class PlayerController : IUpdate, IFixedUpdate, IOnDestroy
             _doJump = false;
             _currentCharacter.IsGround = false;
             _currentCharacter.Rigidbody.AddForce(Vector3.up * _currentCharacter.JumpStartSpeed);
-            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.jump, true, _currentCharacter.AnimationSpeed);
+            _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.jump, _currentCharacter.AnimationJumpLoop, _currentCharacter.AnimationJumpSpeed);
         }
     }
 
