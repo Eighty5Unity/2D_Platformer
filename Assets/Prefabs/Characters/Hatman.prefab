@@ -143,5 +143,9 @@ MonoBehaviour:
   _walkSpeed: 50
   _jumpStartSpeed: 100
   _acceleration: -9.8
-  _animationSpeed: 5
-  _loop: 1
+  _animationIdleSpeed: 4
+  _idleLoop: 1
+  _animationWalkSpeed: 7
+  _walkLoop: 1
+  _animationJumpSpeed: 3
+  _jumpLoop: 0

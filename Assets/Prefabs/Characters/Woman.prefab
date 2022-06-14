@@ -140,10 +140,12 @@ MonoBehaviour:
   _spriteAnimationConfig: {fileID: 11400000, guid: c962a2f7e73854612b134685fc94eaf2, type: 2}
   _collider: {fileID: 7023031287104295891}
   _rigidbody: {fileID: 4413456008181944896}
-  _walkSpeed: 50
-  _jumpStartSpeed: 100
-  _flyThresh: 0.4
-  _groundLevel: -1.9
+  _walkSpeed: 40
+  _jumpStartSpeed: 90
   _acceleration: -9.8
-  _animationSpeed: 3
-  _loop: 1
+  _animationIdleSpeed: 5
+  _idleLoop: 1
+  _animationWalkSpeed: 7
+  _walkLoop: 1
+  _animationJumpSpeed: 3
+  _jumpLoop: 1
