@@ -8,12 +8,16 @@ public class BarrelShooting : IUpdate, IFixedUpdate
     private WellView _well;
     private BarrelFactory _barrelFactory;
     public BarrelFactory BarrelFactory => _barrelFactory;
+    private BarrelCrashFactory _barrelCrashFactory;
+    public BarrelCrashFactory BarrelCrashFactory => _barrelCrashFactory;
     private float _timeTillNextShoot = 1f;
     private List<BarrelView> _barrelViews = new List<BarrelView>();
+    private List<ParticleSystem> _barrelParticleSystems = new List<ParticleSystem>();
 
-    public BarrelShooting(BarrelView barrelView, WellView well)
+    public BarrelShooting(BarrelView barrelView, WellView well, GameObject barrelCrashEffect)
     {
         _barrelFactory = new BarrelFactory(barrelView.gameObject);
+        _barrelCrashFactory = new BarrelCrashFactory(barrelCrashEffect);
         _shootingStartPoint = well.BarrelShootPoint;
         _well = well;
     }
@@ -25,7 +29,22 @@ public class BarrelShooting : IUpdate, IFixedUpdate
             if (barrel.IsGround)
             {
                 barrel.IsGround = false;
+                var position = barrel.transform.position;
+                var rotation = barrel.transform.rotation;
+                var crashEffect = _barrelCrashFactory.GetBarrelCrashEffect(position, rotation);
+                crashEffect.Play();
+                _barrelParticleSystems.Add(crashEffect);
+                _barrelViews.Remove(barrel);
                 _barrelFactory.Destroy(barrel);
+            }
+        }
+
+        for(int i = 0; i < _barrelParticleSystems.Count; i++)
+        {
+            if (!_barrelParticleSystems[i].isPlaying)
+            {
+                _barrelParticleSystems.Remove(_barrelParticleSystems[i]);
+                _barrelCrashFactory.Destroy(_barrelParticleSystems[i]);
             }
         }
     }

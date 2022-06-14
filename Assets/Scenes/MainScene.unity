@@ -600,6 +600,7 @@ MonoBehaviour:
   - {fileID: 1908738245}
   _wellView: {fileID: 2070156169}
   _barrelView: {fileID: 8965954400438659157, guid: f3f11446ede464508be5a759e29c89ac, type: 3}
+  _barrelCrashEffect: {fileID: 2406824995897249171, guid: 81f19d8c735a040f2864b72532bade84, type: 3}
 --- !u!4 &325402583
 Transform:
   m_ObjectHideFlags: 0
