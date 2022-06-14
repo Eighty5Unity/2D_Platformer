@@ -16,8 +16,7 @@ internal sealed class GameInitialize
         var spriteAnimationController = new SpriteAnimationController(gameObjects.CharacterViews);
         var playerController = new PlayerController(changePlayerController, inputInitialize.GetInputAxis(), inputInitialize.GetInputUpKey());
 
-        var barrelFactory = new BarrelFactory(gameObjects.BarrelViews[0].gameObject);
-
+        var barrelShooting = new BarrelShooting(gameObjects.BarrelView, gameObjects.WellView);
         controllers.AddController(inputInitialize);
         controllers.AddController(inputController);
         controllers.AddController(changePlayerController);
@@ -26,6 +25,7 @@ internal sealed class GameInitialize
         controllers.AddController(spriteAnimationController);
         controllers.AddController(playerController);
 
-        controllers.AddController(barrelFactory.BarrelPool);
+        controllers.AddController(barrelShooting);
+        controllers.AddController(barrelShooting.BarrelFactory.BarrelPool);
     }
 }
