@@ -8,12 +8,10 @@ public class AllGameObjects : MonoBehaviour
     [SerializeField] private CharacterView[] _characterView;
     [SerializeField] private WellView _wellView;
     [SerializeField] private List<BarrelView> _barrelViews;
-    [SerializeField] private Transform _muzzleTransform;
 
     public Camera Camera => _camera;
     public SpriteRenderer Background => _background;
     public CharacterView[] CharacterViews => _characterView;
     public WellView WellView => _wellView;
     public List<BarrelView> BarrelViews => _barrelViews;
-    public Transform MuzzleTransform => _muzzleTransform;
 }

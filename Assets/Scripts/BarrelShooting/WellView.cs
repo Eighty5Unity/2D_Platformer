@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WellView : MonoBehaviour
 {
-    [SerializeField] private Transform _muzzleTransform;
+    [SerializeField] private float _barrelShootPoint;
 
-    public Transform MuzzleTransform => _muzzleTransform;
+    public float BarrelShootPoint => _barrelShootPoint;
 }
