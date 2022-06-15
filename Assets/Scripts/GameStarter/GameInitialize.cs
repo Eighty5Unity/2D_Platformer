@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 internal sealed class GameInitialize
@@ -26,7 +24,5 @@ internal sealed class GameInitialize
         controllers.AddController(playerController);
 
         controllers.AddController(barrelShooting);
-        controllers.AddController(barrelShooting.BarrelFactory.BarrelPool);
-        controllers.AddController(barrelShooting.BarrelCrashFactory.BarrelCrashPool);
     }
 }

@@ -7,10 +7,8 @@ public class BarrelShooting : IUpdate, IFixedUpdate
     private Transform _shootingStartPoint;
     private WellView _well;
     private BarrelFactory _barrelFactory;
-    public BarrelFactory BarrelFactory => _barrelFactory;
     private BarrelCrashFactory _barrelCrashFactory;
-    public BarrelCrashFactory BarrelCrashFactory => _barrelCrashFactory;
-    private float _timeTillNextShoot = 1f;
+    private float _timeTillNextShoot = 0.1f;
     private List<BarrelView> _barrelViews = new List<BarrelView>();
     private List<ParticleSystem> _barrelParticleSystems = new List<ParticleSystem>();
 
@@ -34,17 +32,19 @@ public class BarrelShooting : IUpdate, IFixedUpdate
                 var crashEffect = _barrelCrashFactory.GetBarrelCrashEffect(position, rotation);
                 crashEffect.Play();
                 _barrelParticleSystems.Add(crashEffect);
-                _barrelViews.Remove(barrel);
                 _barrelFactory.Destroy(barrel);
+                _barrelViews.Remove(barrel);
+                break;
             }
         }
 
-        for(int i = 0; i < _barrelParticleSystems.Count; i++)
+        foreach(var effect in _barrelParticleSystems)
         {
-            if (!_barrelParticleSystems[i].isPlaying)
+            if (!effect.isPlaying)
             {
-                _barrelParticleSystems.Remove(_barrelParticleSystems[i]);
-                _barrelCrashFactory.Destroy(_barrelParticleSystems[i]);
+                _barrelCrashFactory.Destroy(effect);
+                _barrelParticleSystems.Remove(effect);
+                break;
             }
         }
     }
@@ -57,7 +57,7 @@ public class BarrelShooting : IUpdate, IFixedUpdate
         }
         else
         {
-            _timeTillNextShoot = 1f;
+            _timeTillNextShoot = 0.5f;
             var barrel = _barrelFactory.GetBarrel(_shootingStartPoint.position, _shootingStartPoint.rotation);
             barrel.Rigidbody.AddForce(new Vector2(_well.LeftRight, _well.DownUp), ForceMode2D.Impulse);
             _barrelViews.Add(barrel);

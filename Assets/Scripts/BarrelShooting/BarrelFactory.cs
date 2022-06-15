@@ -3,7 +3,6 @@ using UnityEngine;
 public class BarrelFactory
 {
     private PoolGameObject _barrelPool;
-    public PoolGameObject BarrelPool => _barrelPool;
 
     public BarrelFactory(GameObject barrel)
     {

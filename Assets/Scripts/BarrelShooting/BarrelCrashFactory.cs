@@ -3,7 +3,6 @@ using UnityEngine;
 public class BarrelCrashFactory
 {
     private PoolGameObject _barrelCrashPool;
-    public PoolGameObject BarrelCrashPool => _barrelCrashPool;
 
     public BarrelCrashFactory(GameObject barrelCrashEffect)
     {

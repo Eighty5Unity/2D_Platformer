@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolGameObject : IPoolGameObject, IOnDestroy
+public class PoolGameObject : IPoolGameObject
 {
     private Stack<GameObject> _stack;
     protected GameObject _prefab;
@@ -45,15 +45,5 @@ public class PoolGameObject : IPoolGameObject, IOnDestroy
         _stack.Push(gameObject);
         gameObject.transform.SetParent(_root);
         gameObject.SetActive(false);
-    }
-
-    public void OnDestroy()
-    {
-        while(_stack.Count > 0)
-        {
-            GameObject gameObject = _stack.Pop();
-            GameObject.Destroy(gameObject);
-        }
-        GameObject.Destroy(_root.gameObject);
     }
 }
