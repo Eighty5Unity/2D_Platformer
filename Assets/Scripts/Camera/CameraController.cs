@@ -16,7 +16,20 @@ public class CameraController : ILateUpdate
     public void LateUpdate(float deltaTime)
     {
         var playerPosition = _changePlayerController.CurrentCharacter.transform.position;
-        var xTarget = playerPosition.x + _camera.xOffset;
+
+        //Set X target
+        var xTarget = playerPosition.x + _camera.xOffset * (_changePlayerController.CurrentCharacter.SpriteRenderer.flipX ? -1 : 1);
+
+        if (xTarget < _camera.LeftPivot)
+        {
+            xTarget = _camera.LeftPivot;
+        }
+        else if (xTarget > _camera.RightPivot)
+        {
+            xTarget = _camera.RightPivot;
+        }
+
+        //Set Y target
         var yTarget = _camera.TransformCamera.position.y + _camera.yOffset;
 
         for (int i = 0; i < _yTrack.Length - 1; i++)
