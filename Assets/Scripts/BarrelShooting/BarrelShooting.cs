@@ -36,6 +36,13 @@ public class BarrelShooting : IUpdate, IFixedUpdate
                 _barrelViews.Remove(barrel);
                 break;
             }
+            else if (barrel.IsWagon)
+            {
+                barrel.IsWagon = false;
+                _barrelFactory.Destroy(barrel);
+                _barrelViews.Remove(barrel);
+                break;
+            }
         }
 
         foreach(var effect in _barrelParticleSystems)
