@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8905245492676697121}
   - component: {fileID: 6194974732519424690}
   - component: {fileID: 8283578274735338772}
+  - component: {fileID: 8671091579557633770}
   m_Layer: 0
   m_Name: Bearded
   m_TagString: Untagged
@@ -149,3 +150,15 @@ MonoBehaviour:
   _walkLoop: 1
   _animationJumpSpeed: 3
   _jumpLoop: 0
+--- !u!114 &8671091579557633770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7839697793002075281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46616b013af40408594d24a88df819de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
