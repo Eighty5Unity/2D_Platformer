@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WomanView : MonoBehaviour
+public class WomanView : MonoBehaviour, ICharacters
 {
 
 }

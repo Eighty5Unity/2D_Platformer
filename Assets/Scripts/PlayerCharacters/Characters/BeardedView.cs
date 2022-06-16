@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BeardedView : MonoBehaviour
+public class BeardedView : MonoBehaviour, ICharacters
 {
 
 }

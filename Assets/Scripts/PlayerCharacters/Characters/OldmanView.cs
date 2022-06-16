@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class OldmanView : MonoBehaviour
+public class OldmanView : MonoBehaviour, ICharacters
 {
 
 }

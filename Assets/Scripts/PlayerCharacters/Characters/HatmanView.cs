@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HatmanView : MonoBehaviour
+public class HatmanView : MonoBehaviour, ICharacters
 {
 
 }

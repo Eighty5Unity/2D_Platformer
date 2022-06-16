@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class ChangePlayerController : IUpdate, IOnDestroy
 {
     private CharacterView[] _characterViews;
@@ -11,6 +13,9 @@ public class ChangePlayerController : IUpdate, IOnDestroy
     {
         _characterViews = characterViews;
         _currentCharacter = characterViews[_currentControllerNumber];
+        _currentCharacter.IsCurrentCharacter = true;
+        _currentCharacter.Rigidbody.bodyType = RigidbodyType2D.Dynamic;
+
         _spaceKey = spaceKey;
         _spaceKey.PressKey += PressSpaceKey;
     }
@@ -24,6 +29,8 @@ public class ChangePlayerController : IUpdate, IOnDestroy
     {
         if (_isSpaceKeyPress)
         {
+            _currentCharacter.IsCurrentCharacter = false;
+            _currentCharacter.Rigidbody.bodyType = RigidbodyType2D.Static;
             _currentCharacter.SpriteAnimation.StartAnimation(_currentCharacter.SpriteRenderer, CharacterAnimationTracks.idle, _currentCharacter.AnimationIdleLoop, _currentCharacter.AnimationIdleSpeed);
             _currentControllerNumber++;
             if(_currentControllerNumber >= _characterViews.Length)
@@ -31,6 +38,8 @@ public class ChangePlayerController : IUpdate, IOnDestroy
                 _currentControllerNumber = 0;
             }
             _currentCharacter = _characterViews[_currentControllerNumber];
+            _currentCharacter.IsCurrentCharacter = true;
+            _currentCharacter.Rigidbody.bodyType = RigidbodyType2D.Dynamic;
         }
     }
 

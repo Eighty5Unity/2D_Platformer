@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 343612466774147392}
   - component: {fileID: 7806892721542840672}
   - component: {fileID: 8427456946762928022}
+  - component: {fileID: 3125401231326611170}
   m_Layer: 0
   m_Name: Oldman
   m_TagString: Untagged
@@ -112,7 +113,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4490080173370347129}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -141,6 +142,7 @@ MonoBehaviour:
   _spriteAnimationConfig: {fileID: 11400000, guid: f8bd0b3c12f3240f4a93b273d5ad41a9, type: 2}
   _collider: {fileID: 5418588848116908558}
   _rigidbody: {fileID: 343612466774147392}
+  _trigger: {fileID: 3125401231326611170}
   _walkSpeed: 20
   _jumpStartSpeed: 70
   _acceleration: -9.8
@@ -162,3 +164,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945c61269e787461ba7839495bd3848c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &3125401231326611170
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4490080173370347129}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.37, y: 0.44}
+  m_Direction: 0

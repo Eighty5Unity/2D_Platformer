@@ -7,6 +7,6 @@ public class InputKeyUp : IUserInputKey
 
     public void GetPressKey()
     {
-        PressKey.Invoke(Input.GetKeyDown(KeyCode.UpArrow));
+        PressKey.Invoke(Input.GetKeyDown(KeyCode.W));
     }
 }
