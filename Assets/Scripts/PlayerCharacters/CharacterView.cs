@@ -41,18 +41,23 @@ public class CharacterView : MonoBehaviour
     public SpriteAnimation SpriteAnimation => _spriteAnimation;
     private bool _isGround;
     public bool IsGround { get => _isGround; set => _isGround = value; }
-    private bool _isCurrentCharacter;
-    public bool IsCurrentCharacter { get => _isCurrentCharacter; set => _isCurrentCharacter = value; }
+    private CharactersEnum _character;
+    public CharactersEnum CharacterEnum => _character;
+    private bool _isCanEnterHouse;
+    public bool IsCanEnterHouse { get => _isCanEnterHouse; set => _isCanEnterHouse = value; }
+    private bool _isAtHouse;
+    public bool IsAtHouse { get => _isAtHouse; set => _isAtHouse = value; }
 
     private void Awake()
     {
         _spriteAnimation = new SpriteAnimation(_spriteAnimationConfig);
+        _character = GetComponent<ICharacters>().Character;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
 
-    }
+    //}
 
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -64,21 +69,36 @@ public class CharacterView : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        
+        if (collision.transform.TryGetComponent<GroundView>(out GroundView ground))
+        {
+            _isGround = false;
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+
+    //}
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-
+        if(collision.transform.TryGetComponent<IHouseView>(out IHouseView house))
+        {
+            if(house.Home == _character)
+            {
+                _isCanEnterHouse = true;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
+        if (collision.transform.TryGetComponent<IHouseView>(out IHouseView house))
+        {
+            if (house.Home == _character)
+            {
+                _isCanEnterHouse = false;
+            }
+        }
     }
 }
