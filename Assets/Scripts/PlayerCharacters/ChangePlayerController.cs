@@ -4,6 +4,7 @@ public class ChangePlayerController : IUpdate, IOnDestroy
 {
     private CharacterView[] _characterViews;
     private int _currentControllerNumber = 0;
+    public int CurrentControllerNumber => _currentControllerNumber;
     private CharacterView _currentCharacter;
     public CharacterView CurrentCharacter => _currentCharacter;
     private bool _isSpaceKeyPress;

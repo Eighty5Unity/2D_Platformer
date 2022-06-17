@@ -9,6 +9,7 @@ public class AllGameObjects : MonoBehaviour
     [SerializeField] private BarrelView _barrelView;
     [SerializeField] private ParticleSystem _barrelCrashEffect;
     [SerializeField] private Transform[] _yTracksForCamera;
+    [SerializeField] private UIView _uiView;
 
     public CameraView Camera => _camera;
     public Transform[] YTracksForCamera => _yTracksForCamera;
@@ -17,5 +18,5 @@ public class AllGameObjects : MonoBehaviour
     public WellView WellView => _wellView;
     public BarrelView BarrelView => _barrelView;
     public ParticleSystem BarrelCrashEffect => _barrelCrashEffect;
-
+    public UIView UIVIew => _uiView;
 }

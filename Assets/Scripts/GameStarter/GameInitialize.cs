@@ -12,6 +12,7 @@ internal sealed class GameInitialize
         var spriteAnimationController = new SpriteAnimationController(allPrefabs.CharacterViews);
         var playerController = new PlayerController(changePlayerController, inputInitialize.GetInputAxis(), inputInitialize.GetInputUpKey(), inputInitialize.GetInputEKey());
         var barrelShooting = new BarrelShooting(allPrefabs.BarrelView, allPrefabs.WellView, allPrefabs.BarrelCrashEffect.gameObject);
+        var uiController = new UIController(allPrefabs.UIVIew, changePlayerController);
 
         controllers.AddController(inputInitialize);
         controllers.AddController(inputController);
@@ -21,5 +22,6 @@ internal sealed class GameInitialize
         controllers.AddController(spriteAnimationController);
         controllers.AddController(playerController);
         controllers.AddController(barrelShooting);
+        controllers.AddController(uiController);
     }
 }
