@@ -9,8 +9,8 @@ public class WellView : MonoBehaviour
     [SerializeField][Range(0.03f, 0.09f)] private float _downUp;
 
     public Transform BarrelShootPoint => _barrelShootPoint;
-    public float LeftRight => _leftRight;
-    public float DownUp => _downUp;
-    //public float LeftRight => Random.Range(-0.03f, 0f);
-    //public float DownUp => Random.Range(0.05f, 0.08f);
+    //public float LeftRight => _leftRight;
+    //public float DownUp => _downUp;
+    public float LeftRight => Random.Range(-0.03f, 0.03f);
+    public float DownUp => Random.Range(0.05f, 0.08f);
 }
