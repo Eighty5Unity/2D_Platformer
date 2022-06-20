@@ -1,11 +1,14 @@
-public class UIController : IUpdate, IOnDestroy
+using UnityEngine;
+
+public class UIController : IOnDestroy
 {
     private UIView _uiView;
     private ChangePlayerController _changePlayerController;
     private int _currentPlayerIndex;
     private IUserInputKey _spaceKey;
+    private IUserInputKey _qKey;
 
-    public UIController(UIView uiView, ChangePlayerController changePlayerController, IUserInputKey spaceKey)
+    public UIController(UIView uiView, ChangePlayerController changePlayerController, IUserInputKey spaceKey, IUserInputKey qKey)
     {
         _uiView = uiView;
         _changePlayerController = changePlayerController;
@@ -13,10 +16,38 @@ public class UIController : IUpdate, IOnDestroy
         _uiView.CurrentCharacterImage.sprite = _uiView.CharacterImages[_currentPlayerIndex];
         _spaceKey = spaceKey;
         _spaceKey.PressKey += ChangeCharacterAvatar;
+        _qKey = qKey;
+        _qKey.PressKey += ShowCharacterHint;
     }
 
-    public void Update(float deltaTime)
+    public void OnDestroy()
     {
+        _spaceKey.PressKey -= ChangeCharacterAvatar;
+        _qKey.PressKey -= ShowCharacterHint;
+    }
+
+    private void ChangeCharacterAvatar(bool value)
+    {
+        //if (!value)
+        //{
+        //    return;
+        //}
+
+        if (_currentPlayerIndex != _changePlayerController.CurrentControllerNumber)
+        {
+            _currentPlayerIndex = _changePlayerController.CurrentControllerNumber;
+            _uiView.CurrentCharacterImage.sprite = _uiView.CharacterImages[_currentPlayerIndex];
+        }
+    }
+
+    private void ShowCharacterHint(bool value)
+    {
+        if (value)
+        {
+            _uiView.HintText.text = StringHints.CharacterTask(_changePlayerController.CurrentCharacter.CharacterEnum);
+            return;
+        }
+
         //Set hint text
         if (_changePlayerController.CurrentCharacter.IsCanEnterHouse)
         {
@@ -28,21 +59,7 @@ public class UIController : IUpdate, IOnDestroy
         }
         else
         {
-            _uiView.HintText.text = StringHints.CharacterTask(_changePlayerController.CurrentCharacter.CharacterEnum); // make this hint if pressKey Q
-        }
-    }
-
-    public void OnDestroy()
-    {
-        _spaceKey.PressKey -= ChangeCharacterAvatar;
-    }
-
-    private void ChangeCharacterAvatar(bool value)
-    {
-        if (_currentPlayerIndex != _changePlayerController.CurrentControllerNumber)
-        {
-            _currentPlayerIndex = _changePlayerController.CurrentControllerNumber;
-            _uiView.CurrentCharacterImage.sprite = _uiView.CharacterImages[_currentPlayerIndex];
+            _uiView.HintText.text = "";
         }
     }
 }

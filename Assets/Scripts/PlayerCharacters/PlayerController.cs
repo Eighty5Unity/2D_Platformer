@@ -1,13 +1,11 @@
 using UnityEngine;
 
-public class PlayerController : IUpdate, IFixedUpdate, IOnDestroy
+public class PlayerController : IFixedUpdate, IOnDestroy
 {
     private ChangePlayerController _playerController;
     private CharacterView _currentCharacter;
     private float _horizontal;
     private IUserInput _horizontalInput;
-    private bool _pressUpKey;
-    private bool _pressEKey;
     private bool _doJump;
     private IUserInputKey _upKey;
     private IUserInputKey _eKey;
@@ -30,22 +28,15 @@ public class PlayerController : IUpdate, IFixedUpdate, IOnDestroy
 
     private void PressUpKey(bool value)
     {
-        _pressUpKey = value;
+        if (value)
+        {
+            _doJump = true;
+        }
     }
 
     private void PressEKey(bool value)
     {
-        _pressEKey = value;
-    }
-
-    public void Update(float deltaTime)
-    {
-        if (_pressUpKey)
-        {
-            _doJump = true;
-        }
-
-        if (_pressEKey)
+        if (value)
         {
             EnterExitHouse();
         }
