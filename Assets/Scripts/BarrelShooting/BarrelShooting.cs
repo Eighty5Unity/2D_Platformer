@@ -1,23 +1,31 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BarrelShooting : IUpdate, IFixedUpdate
 {
     private Transform _shootingStartPoint;
-    private WellView _well;
+    private BarrelShootingView _shootingPoint;
     private BarrelFactory _barrelFactory;
     private BarrelCrashFactory _barrelCrashFactory;
-    private float _timeTillNextShoot = 0.1f;
+    private float _timeTillNextShoot = 3f;
     private List<BarrelView> _barrelViews = new List<BarrelView>();
     private List<ParticleSystem> _barrelParticleSystems = new List<ParticleSystem>();
+    private CharacterView _bearded;
 
-    public BarrelShooting(BarrelView barrelView, WellView well, GameObject barrelCrashEffect)
+    public BarrelShooting(BarrelView barrelView, BarrelShootingView shootingView, GameObject barrelCrashEffect, CharacterView[] characters)
     {
         _barrelFactory = new BarrelFactory(barrelView.gameObject);
         _barrelCrashFactory = new BarrelCrashFactory(barrelCrashEffect);
-        _shootingStartPoint = well.BarrelShootPoint;
-        _well = well;
+        _shootingPoint = shootingView;
+        _shootingStartPoint = _shootingPoint.BarrelShootPoint;
+
+        foreach(var bearded in characters)
+        {
+            if(bearded.CharacterEnum == CharactersEnum.Bearded)
+            {
+                _bearded = bearded;
+            }
+        }
     }
 
     public void Update(float deltaTime)
@@ -58,15 +66,20 @@ public class BarrelShooting : IUpdate, IFixedUpdate
 
     public void FixedUpdate(float fixedDeltaTime)
     {
+        if (!_bearded.IsAtHouse)
+        {
+            return;
+        }
+
         if(_timeTillNextShoot > 0)
         {
             _timeTillNextShoot -= fixedDeltaTime;
         }
         else
         {
-            _timeTillNextShoot = 0.5f;
+            _timeTillNextShoot = 3f;
             var barrel = _barrelFactory.GetBarrel(_shootingStartPoint.position, _shootingStartPoint.rotation);
-            barrel.Rigidbody.AddForce(new Vector2(_well.LeftRight, _well.DownUp), ForceMode2D.Impulse);
+            barrel.Rigidbody.AddForce(new Vector2(_shootingPoint.LeftRight, _shootingPoint.DownUp), ForceMode2D.Impulse);
             _barrelViews.Add(barrel);
         }
     }

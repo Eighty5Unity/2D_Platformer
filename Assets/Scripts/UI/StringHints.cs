@@ -10,16 +10,16 @@ public static class StringHints
         switch (character)
         {
             case CharactersEnum.Woman:
-                task = "Task for woman";
+                task = "Life is Beautiful";
                 break;
             case CharactersEnum.Oldman:
-                task = "Task for oldman";
+                task = "I lost my staff, the last time I saw it was near the well";
                 break;
             case CharactersEnum.Bearded:
-                task = "Task for bearded";
+                task = "I need to fill the wagon with barrels";
                 break;
             case CharactersEnum.Hatman:
-                task = "Task for hatman";
+                task = "I need flowers and a ring, I want to propose to my girlfriend";
                 break;
             default:
                 task = "";

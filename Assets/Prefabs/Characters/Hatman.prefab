@@ -144,7 +144,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 4371272538445104753}
   _trigger: {fileID: 1500381108206251531}
   _walkSpeed: 50
-  _jumpStartSpeed: 100
+  _jumpStartSpeed: 150
   _acceleration: -9.8
   _animationIdleSpeed: 4
   _idleLoop: 1

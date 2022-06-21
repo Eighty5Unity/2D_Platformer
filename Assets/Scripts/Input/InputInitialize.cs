@@ -1,4 +1,4 @@
-internal sealed class InputInitialize : IStart
+public sealed class InputInitialize : IStart
 {
     private IUserInput _inputHorizontal;
     private IUserInput _inputVertical;

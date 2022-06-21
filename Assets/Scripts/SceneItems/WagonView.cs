@@ -6,7 +6,7 @@ public class WagonView : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.TryGetComponent<BeardedView>(out BeardedView beader))
+        if (collision.transform.TryGetComponent<HatmanView>(out HatmanView hatman))
         {
             _rigidbody.bodyType = RigidbodyType2D.Dynamic;
         }
@@ -14,7 +14,7 @@ public class WagonView : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.transform.TryGetComponent<BeardedView>(out BeardedView beader))
+        if (collision.transform.TryGetComponent<HatmanView>(out HatmanView hatman))
         {
             _rigidbody.bodyType = RigidbodyType2D.Static;
         }

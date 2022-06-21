@@ -7,19 +7,14 @@ public sealed class InputController : IUpdate
     private readonly IUserInputKey _eKey;
     private readonly IUserInputKey _qKey;
 
-    public InputController((IUserInput horizontal, IUserInput vertical) input,
-        IUserInputKey spaceKey,
-        IUserInputKey upKey,
-        IUserInputKey eKey,
-        IUserInputKey qKey
-        )
+    public InputController(InputInitialize input)
     {
-        _horizontalAxis = input.horizontal;
-        _verticalAxis = input.vertical;
-        _spaceKey = spaceKey;
-        _upKey = upKey;
-        _eKey = eKey;
-        _qKey = qKey;
+        _horizontalAxis = input.GetInputAxis().horizontal;
+        _verticalAxis = input.GetInputAxis().vertical;
+        _spaceKey = input.GetInputSpaceKey();
+        _upKey = input.GetInputUpKey();
+        _eKey = input.GetInputEKey();
+        _qKey = input.GetInputQKey();
     }
 
     public void Update(float deltaTime)

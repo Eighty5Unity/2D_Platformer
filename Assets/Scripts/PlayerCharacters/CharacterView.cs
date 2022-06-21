@@ -21,6 +21,11 @@ public class CharacterView : MonoBehaviour
     [SerializeField] private float _animationJumpSpeed = 3f;
     [SerializeField] private bool _jumpLoop;
 
+    private SpriteAnimation _spriteAnimation;
+    private bool _isGround;
+    private CharactersEnum _character;
+    private bool _isCanEnterHouse;
+    private bool _isAtHouse;
 
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
     public SpriteAnimationConfig SpriteAnimationConfig => _spriteAnimationConfig;
@@ -36,16 +41,10 @@ public class CharacterView : MonoBehaviour
     public bool AnimationWalkLoop => _walkLoop;
     public float AnimationJumpSpeed => _animationJumpSpeed;
     public bool AnimationJumpLoop => _jumpLoop;
-
-    private SpriteAnimation _spriteAnimation;
     public SpriteAnimation SpriteAnimation => _spriteAnimation;
-    private bool _isGround;
     public bool IsGround { get => _isGround; set => _isGround = value; }
-    private CharactersEnum _character;
     public CharactersEnum CharacterEnum => _character;
-    private bool _isCanEnterHouse;
     public bool IsCanEnterHouse { get => _isCanEnterHouse; set => _isCanEnterHouse = value; }
-    private bool _isAtHouse;
     public bool IsAtHouse { get => _isAtHouse; set => _isAtHouse = value; }
 
     private void Awake()
