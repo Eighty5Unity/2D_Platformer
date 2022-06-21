@@ -3,6 +3,7 @@ public static class StringHints
     public static string KeyE = "Press E";
     public static string EnterHouse = "to enter the house";
     public static string ExitHouse = "to exit the house";
+    public static string TaskDone = "all tasks completed";
 
     public static string CharacterTask(CharactersEnum character)
     {
@@ -26,5 +27,23 @@ public static class StringHints
                 break;
         }
         return task;
+    }
+
+    public static string UseWell(CharactersEnum character)
+    {
+        string hint;
+        switch (character)
+        {
+            case CharactersEnum.Hatman:
+                hint = "to jump into the well";
+                break;
+            case CharactersEnum.Bearded:
+                hint = "to lift from the bottom";
+                break;
+            default:
+                hint = "";
+                break;
+        }
+        return hint;
     }
 }

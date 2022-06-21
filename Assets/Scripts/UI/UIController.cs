@@ -42,9 +42,14 @@ public class UIController : IOnDestroy
 
     private void ShowCharacterHint(bool value)
     {
-        if (value)
+        if (value && !_changePlayerController.CurrentCharacter.IsTaskDone)
         {
             _uiView.HintText.text = StringHints.CharacterTask(_changePlayerController.CurrentCharacter.CharacterEnum);
+            return;
+        }
+        else if(value && _changePlayerController.CurrentCharacter.IsTaskDone)
+        {
+            _uiView.HintText.text = StringHints.TaskDone;
             return;
         }
 
@@ -56,6 +61,10 @@ public class UIController : IOnDestroy
         else if (_changePlayerController.CurrentCharacter.IsAtHouse)
         {
             _uiView.HintText.text = StringHints.KeyE + " " + StringHints.ExitHouse;
+        }
+        else if (_changePlayerController.CurrentCharacter.IsCanUseWell)
+        {
+            _uiView.HintText.text = StringHints.KeyE + " " + StringHints.UseWell(_changePlayerController.CurrentCharacter.CharacterEnum);
         }
         else
         {

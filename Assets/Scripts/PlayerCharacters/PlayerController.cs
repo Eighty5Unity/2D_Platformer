@@ -9,6 +9,7 @@ public class PlayerController : IFixedUpdate, IOnDestroy
     private bool _doJump;
     private IUserInputKey _upKey;
     private IUserInputKey _eKey;
+    private CharacterView _hatmanInWell;
 
     public PlayerController(ChangePlayerController playerController, (IUserInput horizontal, IUserInput vertical) input, IUserInputKey upKey, IUserInputKey eKey)
     {
@@ -38,7 +39,14 @@ public class PlayerController : IFixedUpdate, IOnDestroy
     {
         if (value)
         {
-            EnterExitHouse();
+            if (_playerController.CurrentCharacter.IsCanEnterHouse || _playerController.CurrentCharacter.IsAtHouse)
+            {
+                EnterExitHouse();
+            }
+            else if (_playerController.CurrentCharacter.IsCanUseWell)
+            {
+                UseWell();
+            }
         }
     }
 
@@ -87,6 +95,20 @@ public class PlayerController : IFixedUpdate, IOnDestroy
         {
             _currentCharacter.IsAtHouse = true;
             _currentCharacter.gameObject.SetActive(false);
+        }
+    }
+
+    private void UseWell()
+    {
+        if(_playerController.CurrentCharacter.CharacterEnum == CharactersEnum.Hatman)
+        {
+            _hatmanInWell = _playerController.CurrentCharacter;
+            _hatmanInWell.gameObject.SetActive(false);
+        }
+        else if(_playerController.CurrentCharacter.CharacterEnum == CharactersEnum.Bearded && _hatmanInWell != null)
+        {
+            _hatmanInWell.gameObject.SetActive(true);
+            _hatmanInWell = null;
         }
     }
 }

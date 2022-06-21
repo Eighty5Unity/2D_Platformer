@@ -26,6 +26,8 @@ public class CharacterView : MonoBehaviour
     private CharactersEnum _character;
     private bool _isCanEnterHouse;
     private bool _isAtHouse;
+    private bool _isTaskDone;
+    private bool _isCanUseWell;
 
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
     public SpriteAnimationConfig SpriteAnimationConfig => _spriteAnimationConfig;
@@ -46,6 +48,8 @@ public class CharacterView : MonoBehaviour
     public CharactersEnum CharacterEnum => _character;
     public bool IsCanEnterHouse { get => _isCanEnterHouse; set => _isCanEnterHouse = value; }
     public bool IsAtHouse { get => _isAtHouse; set => _isAtHouse = value; }
+    public bool IsTaskDone { get => _isTaskDone; set => _isTaskDone = value; }
+    public bool IsCanUseWell { get => _isCanUseWell; set => _isCanUseWell = value; }
 
     private void Awake()
     {
@@ -88,6 +92,18 @@ public class CharacterView : MonoBehaviour
                 _isCanEnterHouse = true;
             }
         }
+
+        else if(collision.transform.TryGetComponent<WellView>(out WellView well))
+        {
+            if(_character == CharactersEnum.Bearded)
+            {
+                _isCanUseWell = true;
+            }
+            else if(_character == CharactersEnum.Hatman)
+            {
+                _isCanUseWell = true;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -97,6 +113,18 @@ public class CharacterView : MonoBehaviour
             if (house.Home == _character)
             {
                 _isCanEnterHouse = false;
+            }
+        }
+
+        else if (collision.transform.TryGetComponent<WellView>(out WellView well))
+        {
+            if (_character == CharactersEnum.Bearded)
+            {
+                _isCanUseWell = false;
+            }
+            else if (_character == CharactersEnum.Hatman)
+            {
+                _isCanUseWell = false;
             }
         }
     }
