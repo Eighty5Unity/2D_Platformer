@@ -10,8 +10,9 @@ public class PlayerController : IFixedUpdate, IOnDestroy
     private IUserInputKey _upKey;
     private IUserInputKey _eKey;
     private CharacterView _hatmanInWell;
+    private GameTask _gameTask;
 
-    public PlayerController(ChangePlayerController playerController, (IUserInput horizontal, IUserInput vertical) input, IUserInputKey upKey, IUserInputKey eKey)
+    public PlayerController(ChangePlayerController playerController, (IUserInput horizontal, IUserInput vertical) input, IUserInputKey upKey, IUserInputKey eKey, GameTask task)
     {
         _playerController = playerController;
         _horizontalInput = input.horizontal;
@@ -20,6 +21,7 @@ public class PlayerController : IFixedUpdate, IOnDestroy
         _horizontalInput.AxisOnChange += HorizontalAxisOnChange;
         _upKey.PressKey += PressUpKey;
         _eKey.PressKey += PressEKey;
+        _gameTask = task;
     }
 
     private void HorizontalAxisOnChange(float value)
@@ -104,6 +106,7 @@ public class PlayerController : IFixedUpdate, IOnDestroy
         {
             _hatmanInWell = _playerController.CurrentCharacter;
             _hatmanInWell.gameObject.SetActive(false);
+            _gameTask.TaskForHatmanJumpIntoWell = true;
         }
         else if(_playerController.CurrentCharacter.CharacterEnum == CharactersEnum.Bearded && _hatmanInWell != null)
         {

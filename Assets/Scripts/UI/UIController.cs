@@ -64,7 +64,24 @@ public class UIController : IOnDestroy
         }
         else if (_changePlayerController.CurrentCharacter.IsCanUseWell)
         {
-            _uiView.HintText.text = StringHints.KeyE + " " + StringHints.UseWell(_changePlayerController.CurrentCharacter.CharacterEnum);
+            _uiView.HintText.text = StringHints.UseWell(_changePlayerController.CurrentCharacter.CharacterEnum);
+        }
+        //Meet each other
+        else if (_changePlayerController.CurrentCharacter.MeetBearded)
+        {
+            _uiView.HintText.text = StringHints.HiBearded;
+        }
+        else if (_changePlayerController.CurrentCharacter.MeetHatman)
+        {
+            _uiView.HintText.text = StringHints.HiHatman;
+        }
+        else if (_changePlayerController.CurrentCharacter.MeetOldman)
+        {
+            _uiView.HintText.text = StringHints.HiOldman;
+        }
+        else if (_changePlayerController.CurrentCharacter.MeetWoman)
+        {
+            _uiView.HintText.text = StringHints.HiWoman;
         }
         else
         {

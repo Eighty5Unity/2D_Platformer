@@ -11,13 +11,16 @@ public class BarrelShooting : IUpdate, IFixedUpdate
     private List<BarrelView> _barrelViews = new List<BarrelView>();
     private List<ParticleSystem> _barrelParticleSystems = new List<ParticleSystem>();
     private CharacterView _bearded;
+    private GameTask _gameTask;
+    private int _countOfBarrelInWagon;
 
-    public BarrelShooting(BarrelView barrelView, BarrelShootingView shootingView, GameObject barrelCrashEffect, CharacterView[] characters)
+    public BarrelShooting(BarrelView barrelView, BarrelShootingView shootingView, GameObject barrelCrashEffect, CharacterView[] characters, GameTask task)
     {
         _barrelFactory = new BarrelFactory(barrelView.gameObject);
         _barrelCrashFactory = new BarrelCrashFactory(barrelCrashEffect);
         _shootingPoint = shootingView;
         _shootingStartPoint = _shootingPoint.BarrelShootPoint;
+        _gameTask = task;
 
         foreach(var bearded in characters)
         {
@@ -44,8 +47,14 @@ public class BarrelShooting : IUpdate, IFixedUpdate
                 _barrelViews.Remove(barrel);
                 break;
             }
-            else if (barrel.IsWagon)
+            else if (barrel.IsWagon && !_gameTask.TaskForBeardedFillWagon)
             {
+                _countOfBarrelInWagon++;
+                if (_countOfBarrelInWagon == 10)//make field how many counts we need
+                {
+                    _gameTask.TaskForBeardedFillWagon = true;
+                }
+
                 barrel.IsWagon = false;
                 _barrelFactory.Destroy(barrel);
                 _barrelViews.Remove(barrel);

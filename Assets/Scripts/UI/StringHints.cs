@@ -4,6 +4,10 @@ public static class StringHints
     public static string EnterHouse = "to enter the house";
     public static string ExitHouse = "to exit the house";
     public static string TaskDone = "all tasks completed";
+    public static string HiWoman = "Hi woman!";
+    public static string HiOldman = "Hi oldman!";
+    public static string HiBearded = "Hi bearded!";
+    public static string HiHatman = "Hi hatman!";
 
     public static string CharacterTask(CharactersEnum character)
     {
@@ -35,10 +39,16 @@ public static class StringHints
         switch (character)
         {
             case CharactersEnum.Hatman:
-                hint = "to jump into the well";
+                hint = KeyE + " to jump into the well";
                 break;
             case CharactersEnum.Bearded:
-                hint = "to lift from the bottom";
+                hint = KeyE + " to lift from the bottom";
+                break;
+            case CharactersEnum.Woman:
+                hint = "I won't jump there!";
+                break;
+            case CharactersEnum.Oldman:
+                hint = "I'm too old to jump there!";
                 break;
             default:
                 hint = "";

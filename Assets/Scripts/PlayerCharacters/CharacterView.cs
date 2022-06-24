@@ -51,16 +51,44 @@ public class CharacterView : MonoBehaviour
     public bool IsTaskDone { get => _isTaskDone; set => _isTaskDone = value; }
     public bool IsCanUseWell { get => _isCanUseWell; set => _isCanUseWell = value; }
 
+    private bool _meetWoman;
+    private bool _meetHatman;
+    private bool _meetOldman;
+    private bool _meetBearded;
+
+    public bool MeetWoman => _meetWoman;
+    public bool MeetHatman => _meetHatman;
+    public bool MeetOldman => _meetOldman;
+    public bool MeetBearded => _meetBearded;
+
     private void Awake()
     {
         _spriteAnimation = new SpriteAnimation(_spriteAnimationConfig);
         _character = GetComponent<ICharacters>().Character;
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-
-    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.TryGetComponent<ICharacters>(out ICharacters character))
+        {
+            if (character.Character == CharactersEnum.Woman)
+            {
+                _meetWoman = true;
+            }
+            else if (character.Character == CharactersEnum.Oldman)
+            {
+                _meetOldman = true;
+            }
+            else if (character.Character == CharactersEnum.Bearded)
+            {
+                _meetBearded = true;
+            }
+            else if (character.Character == CharactersEnum.Hatman)
+            {
+                _meetHatman = true;
+            }
+        }
+    }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -75,6 +103,26 @@ public class CharacterView : MonoBehaviour
         if (collision.transform.TryGetComponent<GroundView>(out GroundView ground))
         {
             _isGround = false;
+        }
+
+        if (collision.gameObject.TryGetComponent<ICharacters>(out ICharacters character))
+        {
+            if (character.Character == CharactersEnum.Woman)
+            {
+                _meetWoman = false;
+            }
+            else if (character.Character == CharactersEnum.Oldman)
+            {
+                _meetOldman = false;
+            }
+            else if (character.Character == CharactersEnum.Bearded)
+            {
+                _meetBearded = false;
+            }
+            else if (character.Character == CharactersEnum.Hatman)
+            {
+                _meetHatman = false;
+            }
         }
     }
 
@@ -95,14 +143,7 @@ public class CharacterView : MonoBehaviour
 
         else if(collision.transform.TryGetComponent<WellView>(out WellView well))
         {
-            if(_character == CharactersEnum.Bearded)
-            {
-                _isCanUseWell = true;
-            }
-            else if(_character == CharactersEnum.Hatman)
-            {
-                _isCanUseWell = true;
-            }
+            _isCanUseWell = true;
         }
     }
 
@@ -118,14 +159,7 @@ public class CharacterView : MonoBehaviour
 
         else if (collision.transform.TryGetComponent<WellView>(out WellView well))
         {
-            if (_character == CharactersEnum.Bearded)
-            {
-                _isCanUseWell = false;
-            }
-            else if (_character == CharactersEnum.Hatman)
-            {
-                _isCanUseWell = false;
-            }
+            _isCanUseWell = false;
         }
     }
 }
