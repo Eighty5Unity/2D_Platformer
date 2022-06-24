@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class UIController : IOnDestroy
 {
     private UIView _uiView;
@@ -28,11 +26,6 @@ public class UIController : IOnDestroy
 
     private void ChangeCharacterAvatar(bool value)
     {
-        //if (!value)
-        //{
-        //    return;
-        //}
-
         if (_currentPlayerIndex != _changePlayerController.CurrentControllerNumber)
         {
             _currentPlayerIndex = _changePlayerController.CurrentControllerNumber;

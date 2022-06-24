@@ -4,6 +4,8 @@ public class GameTask
 
     private bool _taskForHatman;
     private bool _taskForHatmanJumpIntoWell;
+    private bool _taskForHatmanGetRing;
+    private bool _taskForHatmanGetFlowers;
 
     private bool _taskForOldman;
     private bool _taskForOldmanGetStaff;
@@ -16,6 +18,8 @@ public class GameTask
 
     public bool TaskForHatman { get => _taskForHatman; set => _taskForHatman = value; }
     public bool TaskForHatmanJumpIntoWell { get => _taskForHatmanJumpIntoWell; set => _taskForHatmanJumpIntoWell = value; }
+    public bool TaskForHatmanGetRing { get => _taskForHatmanGetRing; set => _taskForHatmanGetRing = value; }
+    public bool TaskForHatmanGetFlowers { get => _taskForHatmanGetFlowers; set => _taskForHatmanGetFlowers = value; }
 
     public bool TaskForOldman { get => _taskForOldman; set => _taskForOldman = value; }
     public bool TaskForOldmanGetStaff { get => _taskForOldmanGetStaff; set => _taskForOldmanGetStaff = value; }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : IFixedUpdate, IOnDestroy
+public class PlayerController : IUpdate, IFixedUpdate, IOnDestroy
 {
     private ChangePlayerController _playerController;
     private CharacterView _currentCharacter;
@@ -48,6 +48,71 @@ public class PlayerController : IFixedUpdate, IOnDestroy
             else if (_playerController.CurrentCharacter.IsCanUseWell)
             {
                 UseWell();
+            }
+        }
+    }
+
+    public void Update(float deltaTime)
+    {
+        //Woman
+        if(_currentCharacter.CharacterEnum == CharactersEnum.Woman)
+        {
+            if (_gameTask.TaskForWoman)
+            {
+                _currentCharacter.IsTaskDone = true;
+            }
+        }
+
+        //Hatman
+        else if(_currentCharacter.CharacterEnum == CharactersEnum.Hatman)
+        {
+            if (_gameTask.TaskForHatman)
+            {
+                _currentCharacter.IsTaskDone = true;
+            }
+
+            if (_currentCharacter.MeetOldman && _gameTask.TaskForHatmanJumpIntoWell)
+            {
+                _gameTask.TaskForOldman = true;
+            }
+
+            if(_gameTask.TaskForHatmanGetFlowers && _gameTask.TaskForHatmanGetRing && _currentCharacter.MeetWoman)
+            {
+                _gameTask.TaskForHatman = true;
+                _gameTask.TaskForWoman = true;
+            }
+        }
+
+        //Oldman
+        else if (_currentCharacter.CharacterEnum == CharactersEnum.Oldman)
+        {
+            if (_gameTask.TaskForOldman)
+            {
+                _currentCharacter.IsTaskDone = true;
+            }
+
+            if(_currentCharacter.MeetHatman && _gameTask.TaskForOldman)
+            {
+                _gameTask.TaskForHatmanGetRing = true;
+            }
+        }
+
+        //Bearded
+        else if (_currentCharacter.CharacterEnum == CharactersEnum.Bearded)
+        {
+            if (_gameTask.TaskForBearded)
+            {
+                _currentCharacter.IsTaskDone = true;
+            }
+
+            if (_gameTask.TaskForBeardedFillWagon)
+            {
+                _gameTask.TaskForBearded = true;
+            }
+
+            if(_currentCharacter.MeetHatman && _gameTask.TaskForBearded)
+            {
+                _gameTask.TaskForHatmanGetFlowers = true;
             }
         }
     }
